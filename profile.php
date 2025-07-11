@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Redirect to login if not logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location:login.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include('db.php');
 
-// Fetch user details
+
 $user_id = $_SESSION['user_id'];
 
 $stmt = $conn->prepare("SELECT name, email, created_at FROM users WHERE id = ?");
@@ -20,7 +20,7 @@ $result = $stmt->get_result();
 if ($result && $result->num_rows === 1) {
     $user = $result->fetch_assoc();
 } else {
-    // Optional: fallback if user not found
+   
     $user = [
         'name' => 'Unknown',
         'email' => 'Unknown',
